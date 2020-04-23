@@ -15,7 +15,7 @@ export default function Chart() {
         console.log(dailyaData);
 
         fetchAPI();
-    });
+    },[]);
 
     const lineChart=(
         dailyaData.length ?(
