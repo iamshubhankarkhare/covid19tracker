@@ -7,11 +7,9 @@ import cx from 'classnames';
 
 
 export default function Cards({ data: { confirmed, recovered, deaths, lastUpdate } }) {
-    console.log(confirmed);
     if (!confirmed) {
         return 'Loading..'
     }
-    console.log("cards")
 
     return (
         <div className={styles.container}>
