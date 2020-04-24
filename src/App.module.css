@@ -1,5 +1,7 @@
 body{
-    background-color: antiquewhite;
+    background-color: #e2dfec;
+    margin: 0;
+    padding: 0%;
 }
 .container{
     display: flex;

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Cards, Chart, CountryPicker, Loader } from './components'
+import { Cards, Chart, CountryPicker, Loader, Guidelines } from './components'
 import styles from './App.module.css';
 import { fetchData } from './api'
 
@@ -34,6 +34,7 @@ export default class App extends Component {
                     <Cards data={data} />
                     <CountryPicker handleCountryChange={this.handleCountryChange} />
                     <Chart data={data} country={country} />
+                    <Guidelines></Guidelines>
                 </Fragment>)}
             </div>
         )

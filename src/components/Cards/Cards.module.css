@@ -1,15 +1,32 @@
-.container{
+.container {
     margin: 50px 0;
 }
-.card{
-    margin: 0 2% !important;
+
+.card {
+    margin: 1% 3% !important;
+    border-radius: 26px;
+    background: linear-gradient(225deg, #f2effd, #cbc9d4) !important;
+    box-shadow:  11px 11px 20px #6f6d74, 
+    -11px -11px 20px #ffffff !important;
 }
-.infected{
-    border-bottom: 10px solid blue;
+
+.infected {
+    border-bottom: 5px solid blue;
 }
-.recovered{
-    border-bottom: 10px solid green;
+
+.recovered {
+    border-bottom: 5px solid green;
 }
-.deaths{
-    border-bottom: 10px solid red;
+
+.deaths {
+    border-bottom: 5px solid red;
+}
+
+@media (max-width: 480px) {
+    .card {
+        margin: 2% 5% !important;
+        background: linear-gradient(225deg, #f2effd, #cbc9d4) !important;
+
+        box-shadow: -18px 18px 20px #6f6d74, 18px -18px 20px #ffffff, inset -18px 18px 20px #6f6d74, inset 18px -18px 20px #ffffff !important;
+    }
 }

@@ -7,50 +7,52 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 50vh;
-    width: 80%;
-    background: #240229;
+    min-height: 100vh;
+    min-width: 100vw;
+    background: linear-gradient(225deg, #f2effd, #cbc9d4);
 }
 
 .loader {
     position: relative;
     width: 200px;
     height: 200px;
-    border: 4px solid #240229 !important;
+    border: 4px solid #cbc9d4 !important;
     overflow: hidden;
     border-radius: 50%;
-    background: #240229;
-    box-shadow: 20px 20px 60px #0e0110, -20px -20px 60px #3a0342, inset 20px 20px 60px #0e0110, inset -20px -20px 60px #3a0342
+    background: linear-gradient(145deg, #f2effd, #cbc9d4);
+    box-shadow: -18px 18px 20px #6f6d74, 18px -18px 20px #ffffff, inset -18px 18px 20px #6f6d74, inset 18px -18px 20px #ffffff !important;
 }
 
 .loader:before {
     content: '';
     position: absolute;
-    background: #240229;
     top: 25px;
     right: 25px;
     bottom: 25px;
     left: 25px;
     z-index: 10;
     border-radius: 50%;
-    border: 2px solid #240229 !important;
-    box-shadow: 20px 20px 60px #0e0110, -20px -20px 60px #3a0342, inset 20px 20px 60px #0e0110, inset -20px -20px 60px #3a0342
+    border: 2px solid #cbc9d4 !important;
+    background: linear-gradient(225deg, #f2effd, #cbc9d4);
+    box-shadow: -18px 18px 20px #6f6d74, 18px -18px 20px #ffffff, inset -18px 18px 20px #6f6d74, inset 18px -18px 20px #ffffff !important;
 }
-.loader span{
+
+.loader span {
     position: absolute;
     width: 100%;
     height: 100%;
     border-radius: 50%;
     z-index: 0;
-    background: linear-gradient(#14ffe9,#ffeb3b,#ff00e0);
+    background: linear-gradient(#14ffe9, #ffeb3b, #ff00e0);
     filter: blur(20px);
     animation: animate 0.5s linear infinite;
 }
-@keyframes animate{
-    0%{
+
+@keyframes animate {
+    0% {
         transform: rotate(0deg);
     }
-    100%{
+    100% {
         transform: rotate(360deg);
     }
 }

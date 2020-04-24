@@ -16,7 +16,7 @@ export default function Cards({ data: { confirmed, recovered, deaths, lastUpdate
             <Grid container spacing={3} justify="center">
                 <Grid item component={Card} xs={12} md={3} className={cx(styles.card,styles.infected)}>
                     <CardContent>
-                        <Typography color="textSecondary" gutterBottom>Infected</Typography>
+                        <Typography color="textSecondary" >Infected</Typography>
                         <Typography variant="h5"><CountUp
                             start={0}
                             end={ confirmed.value }
@@ -29,7 +29,7 @@ export default function Cards({ data: { confirmed, recovered, deaths, lastUpdate
 
                 <Grid item component={Card} xs={12} md={3} className={cx(styles.card,styles.deaths)}>
                     <CardContent>
-                        <Typography color="textSecondary" gutterBottom>Deaths</Typography>
+                        <Typography color="textSecondary" >Deaths</Typography>
                         <Typography variant="h5">
                             <CountUp
                                 start={0}
@@ -43,7 +43,7 @@ export default function Cards({ data: { confirmed, recovered, deaths, lastUpdate
 
                 <Grid item component={Card} xs={12} md={3} className={cx(styles.card,styles.recovered)}>
                     <CardContent>
-                        <Typography color="textSecondary" gutterBottom>Recovered</Typography>
+                        <Typography color="textSecondary" >Recovered</Typography>
                         <Typography variant="h5"><CountUp
                             start={0}
                             end={recovered.value}
