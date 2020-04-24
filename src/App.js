@@ -1,37 +1,40 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Cards, Chart, CountryPicker, Loader } from './components'
 import styles from './App.module.css';
 import { fetchData } from './api'
 
 export default class App extends Component {
-    state={
+    state = {
         data: {},
-        country:''
+        country: '',
+        isLoading: true
     }
 
-     async componentDidMount() {
+    async componentDidMount() {
         const fetchedData = await fetchData();
-        this.setState({data:fetchedData})
+        this.setState({ data: fetchedData })
+        this.setState({ isLoading: false })
     }
 
-    handleCountryChange= async(country)=>{
+    handleCountryChange = async (country) => {
         const fetchedData = await fetchData(country);
-        this.setState({data:fetchedData , country:country})
-        
+        this.setState({ data: fetchedData, country: country })
+
 
     }
 
 
     render() {
-        const {data, country}=this.state;
-       
+        const { data, country } = this.state;
+
         return (
             <div className={styles.container}>
-                <h1>App</h1>
-                <Cards data={data} />
-                <CountryPicker handleCountryChange={this.handleCountryChange} />
-                <Chart  data={data} country= {country} />
-                <Loader></Loader>
+                {this.state.isLoading ? (<Loader></Loader>) : (<Fragment>
+                    <h1>App</h1>
+                    <Cards data={data} />
+                    <CountryPicker handleCountryChange={this.handleCountryChange} />
+                    <Chart data={data} country={country} />
+                </Fragment>)}
             </div>
         )
     }
