@@ -35,7 +35,7 @@ const News = () => {
                 <div key={i} className={styles.card}>
                     <h5>{news.title}</h5>
                     <h6>{news.description}</h6>
-                    <a href={news.url} > Read More</a>
+                    <a href={news.url} > Read more</a>
 
                 </div>);
 
@@ -46,6 +46,7 @@ const News = () => {
 
     return (
         <div className={styles.container}>
+        <h2> Latest news on Corona virus</h2>
             {renderCards()}
             <div className={styles.loadButton}>
             {(loadLimit < fetchedNews.length ? (<button onClick={() => setLoadLimit(loadLimit + 3)}> Load more </button>) : null)}

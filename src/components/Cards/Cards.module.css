@@ -24,7 +24,7 @@
 
 @media (max-width: 768px) {
     .card {
-        margin: 2% 5% !important;
+        margin: 2% 5% 2% 10% !important;
         background: linear-gradient(225deg, #f2effd, #cbc9d4) !important;
 
         box-shadow: -18px 18px 20px #6f6d74, 18px -18px 20px #ffffff, inset -18px 18px 20px #6f6d74, inset 18px -18px 20px #ffffff !important;

@@ -52,7 +52,7 @@
     .card {
        width: 80vw;
        height: 70vh;
-       margin: 5% 3% 3% 5% ;
+       margin:5% auto ;
        padding-top: 5%;
     }
     .card img{
