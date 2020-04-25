@@ -5,7 +5,6 @@ import styles from './News.module.css'
 const News = () => {
     const [fetchedNews, setFetchedNews] = useState([]);
     const [loadLimit, setLoadLimit] = useState(3);
-    const [isDisplay, setIsDisplay]=useState(false)
     // useEffect(() => {
     //     const incLimit = () => {
 
@@ -33,12 +32,11 @@ const News = () => {
     var renderCards = () => {
         return fetchedNews.slice(0, loadLimit).map((news, i) => {
             return (
-                <div key={i}>
+                <div key={i} className={styles.card}>
                     <h5>{news.title}</h5>
-                    <button onClick={()=>{setIsDisplay(!isDisplay)}} key={i}>lauda</button>
-                    {((isDisplay)?(news.description):"uuuuu")}
+                    <h6>{news.description}</h6>
                     <a href={news.url} > Read More</a>
-                    
+
                 </div>);
 
         });
@@ -49,9 +47,10 @@ const News = () => {
     return (
         <div className={styles.container}>
             {renderCards()}
-            {/* <button onClick={()=>setLoadLimit(loadLimit+3)}> load</button>
-            {loadLimit}ghghg{fetchedNews.length} */}
-            {(loadLimit<fetchedNews.length?( <button onClick={()=>setLoadLimit(loadLimit+3)}> load</button>):fetchedNews.length)}
+            <div className={styles.loadButton}>
+            {(loadLimit < fetchedNews.length ? (<button onClick={() => setLoadLimit(loadLimit + 3)}> Load more </button>) : null)}
+
+            </div>
         </div>
     )
 }

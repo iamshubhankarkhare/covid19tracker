@@ -48,7 +48,7 @@
     color: #2c2c2e;
     letter-spacing: 2px;
 }
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .card {
        width: 80vw;
        height: 70vh;
