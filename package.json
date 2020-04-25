@@ -10,6 +10,8 @@
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
     "classnames": "^2.2.6",
+    "dotenv": "^8.2.0",
+    "env-cmd": "^10.1.0",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",
     "react-countup": "^4.3.3",
@@ -17,8 +19,8 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "env-cmd -f .env.development react-scripts start",
+    "build": "env-cmd .env.production react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

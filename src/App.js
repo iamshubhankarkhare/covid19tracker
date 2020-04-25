@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import { Cards, Chart, CountryPicker, Loader, Guidelines } from './components'
+import { Cards, Chart, CountryPicker, Loader, Guidelines, News } from './components'
 import styles from './App.module.css';
 import { fetchData } from './api'
+
+
 
 export default class App extends Component {
     state = {
@@ -23,17 +25,18 @@ export default class App extends Component {
 
     }
 
-
     render() {
         const { data, country } = this.state;
+
 
         return (
             <div className={styles.container}>
                 {this.state.isLoading ? (<Loader></Loader>) : (<Fragment>
-                    <h1>App</h1>
+                    <h1>App hhgg</h1>
                     <Cards data={data} />
                     <CountryPicker handleCountryChange={this.handleCountryChange} />
                     <Chart data={data} country={country} />
+                    <News></News>
                     <Guidelines></Guidelines>
                 </Fragment>)}
             </div>
