@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Cards, Chart, CountryPicker, Loader, Guidelines, News } from './components'
 import styles from './App.module.css';
-import { fetchData, fetchIndianData } from './api'
+import { fetchData, fetchIndianData, fetchIndianStateData } from './api'
 
 
 
@@ -26,6 +26,10 @@ export default class App extends Component {
     }
 
     handleCountryChange = async (country) => {
+        console.log(country)
+        const fetchedIndianData=await fetchIndianStateData(country);
+        console.log(fetchedIndianData);
+        this.setState({ indianData:fetchedIndianData })
         const fetchedData = await fetchData(country);
         this.setState({ data: fetchedData, country: country })
 
@@ -44,7 +48,6 @@ export default class App extends Component {
                     <h1>App hhgg</h1>
                     <input type="checkbox" onClick={() => {
                         this.setState({ isIndia: !isIndia });
-                        console.log(isIndia);
                     }} ></input><label>{isIndia}</label>
                     <Cards data={isIndia?indianData:data} isIndia={isIndia} />
                     <CountryPicker handleCountryChange={this.handleCountryChange} isIndia={isIndia} />

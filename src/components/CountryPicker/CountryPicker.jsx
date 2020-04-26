@@ -10,15 +10,11 @@ const CountryPicker = ({ handleCountryChange , isIndia}) => {
     const [fetchedStates , setFetchedStates]=useState([]);
     useEffect(() => {
         const fetchAPI = async () => {
-        //    isIndia?(setFetchedStates(await fetchStates())):( setFetchedCountries(await fetchCountries()));
         setFetchedStates(await fetchStates());
         setFetchedCountries(await fetchCountries());
         }
         fetchAPI();
     }, [setFetchedCountries]);
-
-console.log(isIndia);
-console.log(fetchedStates);
 
 
     return (
