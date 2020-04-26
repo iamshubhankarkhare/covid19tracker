@@ -6,7 +6,9 @@ import cx from 'classnames';
 
 
 
-export default function Cards({ data: { confirmed, recovered, deaths, lastUpdate } }) {
+export default function Cards({ data: { confirmed, recovered, deaths, lastUpdate ,lastupdatedtime } ,isIndia}) {
+    
+    
     if (!confirmed) {
         return 'Loading..'
     }
@@ -19,10 +21,10 @@ export default function Cards({ data: { confirmed, recovered, deaths, lastUpdate
                         <Typography color="textSecondary" >Infected</Typography>
                         <Typography variant="h5"><CountUp
                             start={0}
-                            end={ confirmed.value }
+                            end={(isIndia?parseInt(confirmed): confirmed.value )}
                             duration={1.5}
                             seperator="," /></Typography>
-                        <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
+                        <Typography color="textSecondary">{isIndia?(lastupdatedtime):(new Date(lastUpdate).toDateString())}</Typography>
                         <Typography variant="body2">Number of Recovered cases of covid</Typography>
                     </CardContent>
                 </Grid>
@@ -33,10 +35,10 @@ export default function Cards({ data: { confirmed, recovered, deaths, lastUpdate
                         <Typography variant="h5">
                             <CountUp
                                 start={0}
-                                end={deaths.value}
+                                end={(isIndia?parseInt(deaths): deaths.value )}
                                 duration={1.5}
                                 seperator="," /></Typography>
-                        <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
+                        <Typography color="textSecondary">{isIndia?(lastupdatedtime):(new Date(lastUpdate).toDateString())}</Typography>
                         <Typography variant="body2">Number of deaths cases of covid</Typography>
                     </CardContent>
                 </Grid>
@@ -46,10 +48,10 @@ export default function Cards({ data: { confirmed, recovered, deaths, lastUpdate
                         <Typography color="textSecondary" >Recovered</Typography>
                         <Typography variant="h5"><CountUp
                             start={0}
-                            end={recovered.value}
+                             end={(isIndia?parseInt(recovered): recovered.value )}
                             duration={1.5}
                             seperator="," /></Typography>
-                        <Typography color="textSecondary">{new Date(lastUpdate).toDateString()}</Typography>
+                        <Typography color="textSecondary">{isIndia?(lastupdatedtime):(new Date(lastUpdate).toDateString())}</Typography>
                         <Typography variant="body2">Number of active cases of covid</Typography>
                     </CardContent>
                 </Grid>

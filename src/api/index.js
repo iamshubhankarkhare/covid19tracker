@@ -4,6 +4,7 @@ console.log(api)
 
 const newsUrl = `https://newsapi.org/v2/top-headlines?q=corona&apiKey=${api}`
 const url = "https://covid19.mathdro.id/api";
+const urlIndia="https://api.covid19india.org/data.json";
 export const fetchData = async (country) => {
     let changeableUrl = url
     if (country) {
@@ -54,3 +55,27 @@ export const fetchNews = async () => {
 
     }
 }
+export const fetchIndianData = async () => {
+    try {
+        const { data:{statewise}} = await axios.get(`${urlIndia}`);
+        //console.log ( statewise[0].confirmed, statewise[0].recovered, statewise[0].deaths );
+        const {confirmed, recovered, deaths, lastupdatedtime}=statewise[0];
+       return({confirmed, recovered, deaths , lastupdatedtime});
+    } catch (error) {
+        console.error();
+
+    }
+}
+
+export const fetchStates = async () => {
+    try {
+        const {data:{statewise} } = await axios.get(`${urlIndia}`);
+
+      return ( statewise.map((states) => states.state));
+    } catch (error) {
+        console.error();
+
+    }
+}
+fetchStates();
+

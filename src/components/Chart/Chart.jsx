@@ -4,8 +4,10 @@ import { Line, Bar } from 'react-chartjs-2';
 import styles from './Chart.module.css'
 
 
-export default function Chart({ data: { confirmed, deaths, recovered }, country }) {
+export default function Chart({ data: { confirmed, deaths, recovered }, country ,isIndia}) {
   const [dailyaData, setDailyData] = useState({})
+// console.log( confirmed, deaths, recovered);
+// console.log(isIndia);
 
   useEffect(() => {
     const fetchAPI = async () => {
@@ -28,7 +30,7 @@ export default function Chart({ data: { confirmed, deaths, recovered }, country 
             data: dailyaData.map(({ deaths }) => deaths),
             label: 'Daths',
             borderColor: "red",
-            backgroundColor: "antiquewhite",
+            backgroundColor: "linear-gradient(225deg, #f2effd, #cbc9d4)",
             fill: true
           }]
         }} />) : null
@@ -42,7 +44,7 @@ export default function Chart({ data: { confirmed, deaths, recovered }, country 
             {
               label: 'People',
               backgroundColor: ['rgba(0, 0, 255, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(255, 0, 0, 0.5)'],
-              data: [confirmed.value, recovered.value, deaths.value],
+              data: isIndia?([confirmed, recovered, deaths]):([confirmed.value, recovered.value, deaths.value]),
             },
           ],
         }}
@@ -60,7 +62,7 @@ export default function Chart({ data: { confirmed, deaths, recovered }, country 
   return (
     
       <div className={styles.container}>
-        {country ? barChart : lineChart}
+        {isIndia?(barChart):(country ? barChart : lineChart)}
       </div>
   )
 }

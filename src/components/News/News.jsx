@@ -5,15 +5,6 @@ import styles from './News.module.css'
 const News = () => {
     const [fetchedNews, setFetchedNews] = useState([]);
     const [loadLimit, setLoadLimit] = useState(3);
-    // useEffect(() => {
-    //     const incLimit = () => {
-
-    //         setLoadLimit(loadLimit + 3);
-    //     }
-    //     console.log(loadLimit);
-
-    //     incLimit();
-    // }, [setLoadLimit])
 
     //news
     useEffect(() => {
@@ -27,7 +18,7 @@ const News = () => {
 
         }
     }, [setFetchedNews])
-    console.log(fetchedNews);
+    
     //render func
     var renderCards = () => {
         return fetchedNews.slice(0, loadLimit).map((news, i) => {
