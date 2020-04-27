@@ -24,13 +24,13 @@ export default function Chart({ data: { confirmed, deaths, recovered }, country 
           datasets: [{
             data: dailyaData.map(({ confirmed }) => confirmed),
             label: 'Infected',
-            borderColor: "#3333ff",
+            borderColor: "#1b216e",
             fill: true
           }, {
             data: dailyaData.map(({ deaths }) => deaths),
-            label: 'Daths',
+            label: 'Deaths',
             borderColor: "red",
-            backgroundColor: "linear-gradient(225deg, #f2effd, #cbc9d4)",
+            backgroundColor: "#e2dfec",
             fill: true
           }]
         }} />) : null
@@ -43,7 +43,7 @@ export default function Chart({ data: { confirmed, deaths, recovered }, country 
           datasets: [
             {
               label: 'People',
-              backgroundColor: ['rgba(0, 0, 255, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(255, 0, 0, 0.5)'],
+              backgroundColor: ['rgba(13, 101, 184, 0.7)', 'rgba(36, 181, 11, 0.7)', 'rgba(255, 0, 0, 0.7)'],
               data: isIndia?([confirmed, recovered, deaths]):([confirmed.value, recovered.value, deaths.value]),
             },
           ],

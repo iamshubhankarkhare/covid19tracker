@@ -66,6 +66,7 @@ export default class App extends Component {
                                 this.handleIndiaToggle()
                                
                             }} ></input><label htmlFor="switch">Toggle</label>
+                            <h6>India</h6>
                         </div>
                     </div>
                     <Cards data={isIndia ? indianData : data} isIndia={isIndia} />
