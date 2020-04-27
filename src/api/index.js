@@ -35,6 +35,7 @@ export const fetchDailyData = async () => {
     }
 }
 export const fetchCountries = async () => {
+    
     try {
         const { data: { countries } } = await axios.get(`${url}/countries`);
 
@@ -45,9 +46,15 @@ export const fetchCountries = async () => {
     }
 }
 
-export const fetchNews = async () => {
+export const fetchNews = async (isIndia) => {
+    let changeableUrl = newsUrl
+    console.log(isIndia);
+    
+    if (isIndia) {
+        changeableUrl = `https://newsapi.org/v2/top-headlines?q=corona&country=in&apiKey=${api}`;
+    }
     try {
-        const { data: { articles } } = await axios.get(`${newsUrl}`);
+        const { data: { articles } } = await axios.get(`${changeableUrl}`);
         return articles.map((news) => news);
         // console.log(articles)
     } catch (error) {
@@ -102,10 +109,4 @@ export const fetchIndianStateData = async (country) => {
 
     }
  }
-// const hh=async ()=>{
-//     const jjj=await fetchIndianStateData("Telangana");
-//     console.log(jjj);
-    
-// }
-// hh();
 
