@@ -2,18 +2,21 @@ import React, { useState, useEffect } from 'react'
 import { fetchDailyData } from '../../api'
 import { Line, Bar } from 'react-chartjs-2';
 import styles from './Chart.module.css'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-
-export default function Chart({ data: { confirmed, deaths, recovered }, country ,isIndia}) {
+export default function Chart({ data: { confirmed, deaths, recovered }, country, isIndia }) {
   const [dailyaData, setDailyData] = useState({})
-// console.log( confirmed, deaths, recovered);
-// console.log(isIndia);
+  // console.log( confirmed, deaths, recovered);
+  // console.log(isIndia);
 
   useEffect(() => {
     const fetchAPI = async () => {
       setDailyData(await fetchDailyData());
     }
     fetchAPI();
+    AOS.init({
+    });
   }, []);
 
   const lineChart = (
@@ -44,7 +47,7 @@ export default function Chart({ data: { confirmed, deaths, recovered }, country 
             {
               label: 'People',
               backgroundColor: ['rgba(13, 101, 184, 0.7)', 'rgba(36, 181, 11, 0.7)', 'rgba(255, 0, 0, 0.7)'],
-              data: isIndia?([confirmed, recovered, deaths]):([confirmed.value, recovered.value, deaths.value]),
+              data: isIndia ? ([confirmed, recovered, deaths]) : ([confirmed.value, recovered.value, deaths.value]),
             },
           ],
         }}
@@ -60,9 +63,14 @@ export default function Chart({ data: { confirmed, deaths, recovered }, country 
 
 
   return (
-    
-      <div className={styles.container}>
-        {isIndia?(barChart):(country ? barChart : lineChart)}
-      </div>
+
+    <div className={styles.container}
+      data-aos="fade-zoom-in"
+      data-aos-easing="ease-in"
+      data-aos-duration="1000"
+      data-aos-offset="0"
+      data-aos-anchor-placement="top-center">
+      {isIndia ? (barChart) : (country ? barChart : lineChart)}
+    </div>
   )
 }

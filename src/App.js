@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import { Cards, Chart, CountryPicker, Loader, Guidelines, News } from './components'
+import { Cards, Chart, CountryPicker, Loader, Guidelines, News} from './components'
 import styles from './App.module.css';
-import { fetchData, fetchIndianData, fetchIndianStateData, fetchNews} from './api'
+import { fetchData, fetchIndianData, fetchIndianStateData, fetchNews } from './api'
 import covid from './assets/covid3.png'
 
 
@@ -13,7 +13,7 @@ export default class App extends Component {
         isLoading: true,
         isIndia: false,
         indianData: {},
-        news:[]
+        news: []
     }
 
     async componentDidMount() {
@@ -21,13 +21,13 @@ export default class App extends Component {
         const fetchedIndianData = await fetchIndianData();
         console.log(fetchedIndianData);
         this.setState({ indianData: fetchedIndianData })
-       
+
 
         this.setState({ data: fetchedData })
         this.setState({ isLoading: false })
 
-        const fetchedNews=await fetchNews(this.state.isIndia)
-        this.setState({ news:fetchedNews })
+        const fetchedNews = await fetchNews(this.state.isIndia)
+        this.setState({ news: fetchedNews })
         console.log(this.state.news);
 
     }
@@ -41,17 +41,17 @@ export default class App extends Component {
         this.setState({ data: fetchedData, country: country })
     }
 
-    handleIndiaToggle=async()=>{
+    handleIndiaToggle = async () => {
         console.log(!this.state.isIndia)
-        const fetchedNews=await fetchNews(!this.state.isIndia)
-        this.setState({ news:fetchedNews })
-       
+        const fetchedNews = await fetchNews(!this.state.isIndia)
+        this.setState({ news: fetchedNews })
+
 
     }
-    
+
 
     render() {
-        const { data, country, isIndia, indianData, news} = this.state;
+        const { data, country, isIndia, indianData, news } = this.state;
 
 
         return (
@@ -64,15 +64,15 @@ export default class App extends Component {
                             <input type="checkbox" id="switch" onClick={() => {
                                 this.setState({ isIndia: !isIndia });
                                 this.handleIndiaToggle()
-                               
+
                             }} ></input><label htmlFor="switch">Toggle</label>
                             <h6>India</h6>
                         </div>
                     </div>
-                    <Cards data={isIndia ? indianData : data} isIndia={isIndia} />
+                    <Cards data={isIndia ? indianData : data} isIndia={isIndia}  />
                     <CountryPicker handleCountryChange={this.handleCountryChange} isIndia={isIndia} />
                     <Chart data={isIndia ? indianData : data} country={country} isIndia={isIndia} />
-                    <News isIndia={isIndia} news={news} ></News>
+                    <News isIndia={isIndia} news={news}  ></News>
                     <Guidelines></Guidelines>
                 </Fragment>)}
             </div>
