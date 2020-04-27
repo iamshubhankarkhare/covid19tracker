@@ -1,6 +1,6 @@
 import axios from 'axios';
 const api = process.env.REACT_APP_NEWS_API;
-console.log(api)
+
 
 const newsUrl = `https://newsapi.org/v2/top-headlines?q=corona&apiKey=${api}`
 const url = "https://covid19.mathdro.id/api";
@@ -48,7 +48,7 @@ export const fetchCountries = async () => {
 
 export const fetchNews = async (isIndia) => {
     let changeableUrl = newsUrl
-    console.log(isIndia);
+   
     
     if (isIndia) {
         changeableUrl = `https://newsapi.org/v2/top-headlines?q=corona&country=in&apiKey=${api}`;
@@ -96,8 +96,7 @@ export const fetchIndianStateData = async (country) => {
                    lastupdatedtime:statewise[index].lastupdatedtime,
                    state:statewise[index].state
                }
-               console.log( statewise[index].confirmed, statewise[index].recovered, statewise[index].deaths, statewise[index].lastupdatedtime, statewise[index].state);
-               console.log(obj)
+              
            
                return(obj);
                

@@ -5,6 +5,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+   
 }
 
 .card {
@@ -41,7 +43,7 @@
 
 .card a {
     align-self: flex-end;
-    color: #2c2c2e;
+    color: #5c5953;
     font-size: small;
     padding: 5%;
 }
@@ -69,16 +71,11 @@ button {
     cursor: pointer;
 }
 
-/* button:after {
-    content: '\02C5';
-    color: #2c2c2c;
-    font-size: inherit;
-    padding: 2%;
-} */
+
 
 @media(max-width:768px) {
     .card {
-        margin: 5% 3% !important;
+        margin: 5% 5% 5% 5% !important;
         height: 45vh;
         width: 90vw;
     }

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Cards, Chart, CountryPicker, Loader, Guidelines, News} from './components'
+import { Cards, Chart, CountryPicker, Loader,Footer, Guidelines, News } from './components'
 import styles from './App.module.css';
 import { fetchData, fetchIndianData, fetchIndianStateData, fetchNews } from './api'
 import covid from './assets/covid3.png'
@@ -7,6 +7,8 @@ import covid from './assets/covid3.png'
 
 
 export default class App extends Component {
+    _isMounted = false;
+
     state = {
         data: {},
         country: '',
@@ -17,32 +19,46 @@ export default class App extends Component {
     }
 
     async componentDidMount() {
+        this._isMounted = true;
         const fetchedData = await fetchData();
-        const fetchedIndianData = await fetchIndianData();
-        console.log(fetchedIndianData);
-        this.setState({ indianData: fetchedIndianData })
+
+        if (this._isMounted) {
+            this.setState({ data: fetchedData })
+            this.setState({ isLoading: false })
+
+            const fetchedNews = await fetchNews(this.state.isIndia)
+            this.setState({ news: fetchedNews })
+        }
+    }
+    async componentDidUpdate(prevProps, prevState) {
+        // const fetchedIndianData = await fetchIndianData();
+        // console.log(fetchedIndianData);
+        // this.setState({ indianData: fetchedIndianData })
+        if (prevState.isIndia !== this.state.isIndia) {
+            const fetchedIndianData = await fetchIndianData();
+            this.setState({ indianData: fetchedIndianData })
+        }
 
 
-        this.setState({ data: fetchedData })
-        this.setState({ isLoading: false })
-
-        const fetchedNews = await fetchNews(this.state.isIndia)
-        this.setState({ news: fetchedNews })
-        console.log(this.state.news);
-
+    }
+    componentWillUnmount() {
+        console.log("bye")
+        this._isMounted = false;
     }
 
     handleCountryChange = async (country) => {
-        console.log(country)
-        const fetchedIndianData = await fetchIndianStateData(country);
-        console.log(fetchedIndianData);
-        this.setState({ indianData: fetchedIndianData })
-        const fetchedData = await fetchData(country);
-        this.setState({ data: fetchedData, country: country })
+        if (this.state.isIndia) {
+            const fetchedIndianData = await fetchIndianStateData(country);
+            this.setState({ indianData: fetchedIndianData })
+        }
+        else {
+            const fetchedData = await fetchData(country);
+            this.setState({ data: fetchedData, country: country })
+        }
+
     }
 
     handleIndiaToggle = async () => {
-        console.log(!this.state.isIndia)
         const fetchedNews = await fetchNews(!this.state.isIndia)
         this.setState({ news: fetchedNews })
 
@@ -69,11 +85,12 @@ export default class App extends Component {
                             <h6>India</h6>
                         </div>
                     </div>
-                    <Cards data={isIndia ? indianData : data} isIndia={isIndia}  />
+                    <Cards data={isIndia ? indianData : data} isIndia={isIndia} />
                     <CountryPicker handleCountryChange={this.handleCountryChange} isIndia={isIndia} />
                     <Chart data={isIndia ? indianData : data} country={country} isIndia={isIndia} />
                     <News isIndia={isIndia} news={news}  ></News>
                     <Guidelines></Guidelines>
+                    <Footer></Footer>
                 </Fragment>)}
             </div>
         )

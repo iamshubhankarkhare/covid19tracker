@@ -1,17 +1,56 @@
 .container {
-    margin: 50px 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-wrap: wrap;
+    padding-bottom: 5%;
 }
 
 .card {
-    margin: 1% 3% !important;
-    border-radius: 26px;
-    background: linear-gradient(225deg, #f2effd, #cbc9d4) !important;
-    box-shadow: -18px 18px 20px #6f6d74, 18px -18px 20px #ffffff, inset -18px 18px 20px #6f6d74, inset 18px -18px 20px #ffffff !important;
+    display: flex;
+    width: max-content;
+    background: white;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 20%;
+    height: 30vh;
+    margin: 2%;
+    padding: 10px;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #cbc9d4, #f2effd);
+    box-shadow: 6px 6px 12px #616065, -6px -6px 12px #ffffff;
+}
 
+.card h5 {
+    color: black;
+    font-size: x-large;
+    font-weight: 120;
+}
+
+.card h3 {
+    color: #575157;
+    font-weight: 80;
+    font-size: x-large;
+}
+
+.card h4 {
+    color: #575157;
+    font-weight: 80;
+}
+
+.card h2 {
+    color: #262426;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    font-weight: 80;
 }
 
 .infected {
-    border-bottom: 5px solid blue;
+    border-bottom:5px solid blue;
 }
 
 .recovered {
@@ -23,10 +62,10 @@
 }
 
 @media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
     .card {
-        margin: 2% 5% 2% 10% !important;
-        background: linear-gradient(225deg, #f2effd, #cbc9d4) !important;
-
-        box-shadow: -18px 18px 20px #6f6d74, 18px -18px 20px #ffffff, inset -18px 18px 20px #6f6d74, inset 18px -18px 20px #ffffff !important;
+        width: 80%;
     }
 }

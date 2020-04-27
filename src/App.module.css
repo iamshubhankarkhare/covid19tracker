@@ -17,7 +17,7 @@ body {
 .footer{
     justify-self: flex-end;
     position: relative;
-    background: black;
+    
 }
 
 /* head */
@@ -26,6 +26,9 @@ body {
     width: 100vw;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+   
+    
 }
 
 .toggle {
@@ -33,6 +36,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .toggle h6 {
@@ -93,7 +97,7 @@ input:checked+label {
 input:checked+label:after {
     left: calc(100% - 5px);
     transform: translateX(-100%);
-    background: #65db4b;
+    background: #7507b5;
     box-shadow:   3px 3px 10px #6f6d74,  -3px -3px 10px #ffffff!important;
 
 }
@@ -102,4 +106,10 @@ label:active:after {
     width: 50px;
     box-shadow:   3px 3px 10px #6f6d74,  -3px -3px 10px #ffffff!important;
 
+}
+@media(max-width:768px){
+    .headWrapper{
+        justify-content: center;
+        padding-bottom: 5%;
+    }
 }

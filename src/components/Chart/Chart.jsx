@@ -69,7 +69,7 @@ export default function Chart({ data: { confirmed, deaths, recovered }, country,
       data-aos-easing="ease-in"
       data-aos-duration="1000"
       data-aos-offset="0"
-      data-aos-anchor-placement="top-center">
+      data-aos-anchor-placement="center-bottom">
       {isIndia ? (barChart) : (country ? barChart : lineChart)}
     </div>
   )

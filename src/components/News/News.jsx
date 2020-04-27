@@ -5,8 +5,6 @@ import 'aos/dist/aos.css';
 
 const News = ({news} ) => {
     const [loadLimit, setLoadLimit] = useState(3);
-
-console.log(news);
 useEffect(() => {
     AOS.init({
     });
