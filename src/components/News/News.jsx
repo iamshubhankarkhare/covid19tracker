@@ -19,7 +19,7 @@ useEffect(() => {
                 <div key={i} className={styles.card}   data-aos="fade-right"
                 data-aos-offset="200"
                 data-aos-duration="1000"
-                data-aos-anchor-placement="bottom-bottom"
+                data-aos-anchor-placement="center-bottom"
                 >
                     <h5>{news.title}</h5>
                     <h6>{news.description}</h6>
