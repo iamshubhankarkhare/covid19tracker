@@ -3,10 +3,11 @@ require('dotenv').config();
 const api = process.env.REACT_APP_NEWS_API;
 
 
-const newsUrl = `https://newsapi.org/v2/top-headlines?q=corona&apiKey=${api}`
+const newsUrl = `https://gnews.io/api/v3/search?q=corona&token=${api}`
 const url = "https://covid19.mathdro.id/api";
 const urlIndia = "https://api.covid19india.org/data.json";
 export const fetchData = async (country) => {
+
     let changeableUrl = url
     if (country) {
         changeableUrl = `${url}/countries/${country}`;
@@ -36,7 +37,7 @@ export const fetchDailyData = async () => {
     }
 }
 export const fetchCountries = async () => {
-    
+
     try {
         const { data: { countries } } = await axios.get(`${url}/countries`);
 
@@ -47,21 +48,23 @@ export const fetchCountries = async () => {
     }
 }
 
-export const fetchNews = async (isIndia) => {
-    let changeableUrl = newsUrl
-   
-    
-    if (isIndia) {
-        changeableUrl = `https://newsapi.org/v2/top-headlines?q=corona&country=in&apiKey=${api}`;
-    }
+export const fetchNews = async () => {
+
     try {
-        const { data: { articles } } = await axios.get(`${changeableUrl}`);
+        const { data: { articles } } = await axios.get(`${newsUrl}`);
         return articles.map((news) => news);
-        // console.log(articles)
     } catch (error) {
-        console.error();
+        console.log(error.response);
 
     }
+
+    // try {
+    //     return articles.map((news) => news);
+    //     console.log(articles);
+    // } catch (error) {
+    //     console.error();
+
+    //}
 }
 export const fetchIndianData = async () => {
     try {
@@ -89,24 +92,24 @@ export const fetchIndianStateData = async (country) => {
     try {
         const { data: { statewise } } = await axios.get(`${urlIndia}`);
         for (let index = 0; index < statewise.length; index++) {
-           if (statewise[index].state===country) {
-               const obj={
-                   confirmed:statewise[index].confirmed,
-                   recovered:statewise[index].recovered,
-                   deaths:statewise[index].deaths,
-                   lastupdatedtime:statewise[index].lastupdatedtime,
-                   state:statewise[index].state
-               }
-              
-           
-               return(obj);
-               
-           }
-            
+            if (statewise[index].state === country) {
+                const obj = {
+                    confirmed: statewise[index].confirmed,
+                    recovered: statewise[index].recovered,
+                    deaths: statewise[index].deaths,
+                    lastupdatedtime: statewise[index].lastupdatedtime,
+                    state: statewise[index].state
+                }
+
+
+                return (obj);
+
+            }
+
         }
     } catch (error) {
         console.error();
 
     }
- }
+}
 

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Cards, Chart, CountryPicker, Loader,Footer, Guidelines, News } from './components'
+import { Cards, Chart, CountryPicker, Loader, Footer, Guidelines, News } from './components'
 import styles from './App.module.css';
 import { fetchData, fetchIndianData, fetchIndianStateData, fetchNews } from './api'
 import covid from './assets/covid3.png'
@@ -26,8 +26,15 @@ export default class App extends Component {
             this.setState({ data: fetchedData })
             this.setState({ isLoading: false })
 
-            const fetchedNews = await fetchNews(this.state.isIndia)
-            this.setState({ news: fetchedNews })
+            const fetchedNews = await fetchNews()
+            try {
+                this.setState({ news: fetchedNews })
+            } catch (error) {
+                console.log(error);
+
+            }
+
+
         }
     }
     async componentDidUpdate(prevProps, prevState) {
@@ -42,7 +49,6 @@ export default class App extends Component {
 
     }
     componentWillUnmount() {
-        console.log("bye")
         this._isMounted = false;
     }
 
@@ -88,7 +94,8 @@ export default class App extends Component {
                     <Cards data={isIndia ? indianData : data} isIndia={isIndia} />
                     <CountryPicker handleCountryChange={this.handleCountryChange} isIndia={isIndia} />
                     <Chart data={isIndia ? indianData : data} country={country} isIndia={isIndia} />
-                    <News isIndia={isIndia} news={news}  ></News>
+                    {this.state.news ? (<News isIndia={isIndia} news={news}  ></News>
+                    ) : (null)}
                     <Guidelines></Guidelines>
                     <Footer></Footer>
                 </Fragment>)}
